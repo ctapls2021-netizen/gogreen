@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /privacy-policy/
+Disallow: /terms-and-conditions/
+
+Sitemap: https://gogreenbuilders.com/sitemap-index.xml

@@ -1,0 +1,165 @@
+
+Hi team,
+
+Hope this email finds you well. As per Moty's advice, I'm reaching out to request a quote for some work we need done on the gogreenbuilders.com website.
+
+Quick introduction - I'm Alfie, and I handle marketing for GoGreen Builders: lead generation, paid media, intake and the systems behind them. I'll be your point of contact on this.
+
+I ran a full technical and local-search audit of the site last week - all 12 pages, the schema layer, the link structure, the tracking stack and the Google and Apple listing connections. Six items need scoping, in priority order. Happy to jump on a call if it's easier to walk through.
+
+ITEM 1 - TRACKING TAGS (highest priority, blocking ad spend)
+
+The site currently has no analytics or advertising tracking of any kind - no Google Tag Manager, no GA4, no Google Ads tag. We can't tell which marketing activity produces calls or form fills, and our Google Ads campaigns are built and paused waiting on it.
+
+What we need:
+
+• Google Tag Manager installed site-wide
+• GA4 set up and linked to Google Ads
+• Conversion trigger on the Fluent Forms submit event (fluentform_submission_success), split by form ID - 4 for service pages, 9 for the contact page
+• Click trigger on all tel: links, and on the sms: TEXT US link
+• A hidden field on both forms capturing the gclid URL parameter, so we can trace which ads produce booked jobs
+• Email and phone fields mapped for Enhanced Conversions
+• The same container and triggers applied to the three new pages in Item 3, so they are tracked from day one
+
+Also a bug worth fixing in the same pass: all seven phone links are coded as tel:%20(818)%20443-6678 with an encoded leading space. Some Android dialers won't parse this, so those taps fail silently. It should be tel:+18184436678. The TEXT US link has the same defect - sms:%20(818)%20443-6678 should be sms:+18184436678.
+
+ITEM 2 - BROKEN LINKS AND DEAD CLICK PATHS (quick wins, same pass)
+
+The audit turned up several links that lead nowhere. These are costing us traffic today and should take under an hour:
+
+• The homepage Home Insulation "Learn More" button and the footer insulation link both point to /home-insultation/ (misspelled), which returns a hard 404
+• The footer Solar Energy link points to /solar-energy/, which redirects to a raw JPEG file instead of /energy-solar/
+• Three buttons have an empty href attribute - the "Go Solar" button and two "Learn More" buttons on the homepage
+• The footer Terms and Conditions link is missing its trailing slash, adding an unnecessary redirect
+• The Lic #1064369 link in the footer goes to the generic CSLB lookup form. It should deep-link to our licence record instead
+• Footer copyright still reads 2024 - please make it dynamic
+
+
+ITEM 3 - THREE NEW SERVICE LANDING PAGES
+
+We actively sell three services that have no page on the site. We have Google Ads campaigns written and ready for each, but they can't run without a page to send traffic to.
+
+• ADU & Garage Conversions - /adu/ - highest job value we sell
+• Battery Backup & Powerwall - /battery-backup/ - cross-sells on every solar lead
+• Tesla Solar Roof - /tesla-solar-roof/ - Tesla Certified Installer credential is the differentiator
+
+Each page should follow the same structure:
+
+• H1 matching the service exactly (e.g. ADU Contractor in Los Angeles)
+• Credentials above the fold - CSLB #1064369, licensed B / C39 / C46, Tesla Certified Installer, 15 years
+• Three to five photos of real completed projects, no stock
+• One enquiry form above the fold, no competing calls to action
+• A visible FAQ block of five to six questions, with matching FAQPage schema. This is what Siri, Alexa and AI search assistants read to answer questions about us, and schema without visible matching content is a Google violation, so both have to ship together
+• Service schema with areaServed, referencing the main LocalBusiness entity from Item 4
+• Mobile load under 3 seconds
+• Internal links to and from the existing solar and roofing pages
+
+Please build these on the same Fluent Forms setup so the tracking from Item 1 covers them automatically.
+
+One constraint on the Tesla page: Tesla's partner marketing rules apply. We can only use the official Tesla Certified Installer badge downloaded from the Tesla Partner Portal - it can't be recreated, and the Tesla T or wordmark can't be used at all. GoGreen branding has to stay more prominent than any Tesla branding, and the word Partner can't appear anywhere. I'll supply the badge file and the approved product images. The finished page also needs a pre-launch screenshot review by Tesla's marketing team, which takes five to seven business days - I'm starting that clock on our side so it doesn't hold up delivery.
+
+
+ITEM 4 - SEO OPTIMISATION
+
+Full on-page audit and remediation across the site. The audit found specific problems worth calling out so they sit inside the quote.
+
+Content and structure:
+
+• Not a single page on the site has an H1 - everything is built as H2s. The homepage alone has 54 H2s and no H1. Every page needs a proper heading hierarchy.
+• Nine of the twelve pages have no written meta description, so the SEO plugin is auto-scraping body copy. Our SMS consent disclaimer is currently showing in Google results, truncated mid-sentence. Eight page titles end in - Go Green, which is not our business name and carries no service or city term.
+• Keyword targeting for our core services - solar, roof replacement, windows and doors, insulation, cool wall coating
+• Internal linking between service pages
+• Existing service pages run 500 to 700 words and repeat the same boilerplate twice per page. They need real depth: what is included, permits and timeline, rebates, warranty, project examples.
+
+Local and voice search:
+
+• NAP consistency against our Google Business Profile
+• LocalBusiness / HomeAndConstructionBusiness schema including CSLB #1064369 and the Tesla Certified Installer credential, plus address, geo coordinates, service area and opening hours
+• Our business hours (Mon to Sat, 8:00 AM to 7:00 PM, closed Sunday) do not appear anywhere on the website. They need to be visible on the site and in the schema - Google cross-checks this against our profile.
+• Link the site to our Google Business Profile and Apple Maps listing via sameAs, and add a reviews section pulling live Google reviews
+• We may also need a DNS TXT record added for Apple Business domain verification - let me know if you manage our DNS
+
+Technical:
+
+• robots.txt currently declares no sitemap at all, and the sitemap's last-modified date is October 2025
+• Open Graph tags are broken sitewide. og:description is literally the string https://gogreenbuilders.com/, og:site_name is Go Green -, and only the homepage has an og:image. Every link we share in iMessage, WhatsApp or LinkedIn previews badly.
+• Privacy Policy and Terms should be set to noindex, follow
+• 17 images across the site have empty alt text, including the logo. No image on the site uses lazy loading, and several are missing width and height attributes, which causes layout shift.
+• Page speed, particularly mobile. The homepage ships 400 KB of HTML before any image, with 30 scripts, 38 render-blocking stylesheets and 125 KB of inline CSS from Elementor. Please include Elementor's Improved CSS Loading and Optimized Markup, a caching and minify layer, and WebP conversion - Cloudflare is already in front of the site.
+
+
+ITEM 5 - LOGO UPDATE
+
+Please replace the current logo everywhere it appears:
+
+• Site header
+• Footer - white version, for the dark background
+• Favicon and Apple touch icon - the current ones are cropped from the old 2024 logo file
+• Open Graph / social sharing image
+• Any email templates running through the site
+
+Note the current header logo is only 185 by 34 pixels, so it renders soft on modern screens. The new mark is also slightly taller in proportion, so the header slot will need adjusting rather than a straight file swap.
+
+Updated logo source files:
+https://res.cloudinary.com/drh7fr01b/image/upload/v1782332818/New_Logo-_trans_background_ixmvrj.png
+https://res.cloudinary.com/drh7fr01b/image/upload/v1782332868/New_Logo-_trans_background_white_version_ewptds.png
+
+I also have a prepared pack of the logo already exported at every size you will need - header at 1x, 2x and 3x, white footer version, and favicon and app icons at 512, 192, 180 and 32. Happy to send it over.
+
+ITEM 6 - TESLA BADGE AND ASSET COMPLIANCE (please read before designing the Tesla page)
+
+We are a Tesla Certified Installer, and Tesla controls how that credential is displayed. Getting it wrong puts the designation at risk, so I would rather it sat inside the scope than got discovered late.
+
+The badge:
+
+• Use only the official Tesla Certified Installer badge (Powerwall and/or Solar variants), downloaded from the Tesla Partner Portal. I will supply the files - please don't recreate, redraw or trace it.
+• Full-colour or monochrome variants only, exactly as supplied. No recolouring, rotating, cropping, stretching or altering the lockup.
+• Keep clear space around it - no text, icons or other logos inside that margin, and never set it inline within body copy.
+• The Tesla T, the Tesla corporate logo, and the Powerwall and Tesla Solar wordmarks cannot be used at all. The badge is the only approved mark.
+
+Where it may appear:
+
+• Homepage trust bar, directly under the hero - not as an element inside the hero itself
+• The /tesla-solar-roof/ and /battery-backup/ pages, around 150px wide
+• Global footer credential row, alongside CSLB #1064369
+
+Where it must not appear:
+
+Site header or navigation, favicon, email signatures, any Google or Meta ad creative, print ads, flyers, door hangers, direct-mail pieces, vehicle wraps, uniforms, business cards or merchandise. If any of the work touches those, leave the badge off and flag it to me.
+
+Product imagery:
+
+Any Tesla product photography has to come from the Tesla Partner Portal - not tesla.com screenshots, not stock sites, not third-party blogs. I will supply the approved files. Our own installation photos are fine with customer consent, and I will handle that. ( Will be provided to the team by us )
+
+Prominence and wording:
+
+GoGreen branding stays visually dominant on every page - the badge supports our credential, it doesn't lead. On copy, the only approved description is Tesla Certified Installer. Please avoid anywhere on the site: Tesla Partner, official Tesla partner, authorised dealer, exclusive, preferred installer, or anything implying Tesla endorses or recommends us. Product claims should stay within published Powerwall specifications - whole-home backup from a single unit, integrated solar inverter, storing solar for lower bills, EV charging from stored solar on Powershare-enabled vehicles. Please also point any Tesla-related call to action at our own page, never out to tesla.com.
+
+Approval step to build into the schedule:
+
+Before the Tesla page goes live, Tesla's marketing team needs a pre-launch review - full-page screenshot or PDF, the URL, a short description of the content, and the planned launch date. Turnaround is five to seven business days, sometimes up to ten. Please plan for a staging URL and a review window before publish, rather than pushing live and correcting after. I will manage the submission and keep the approval record on our side. All I need from you is the staging link and a screenshot once the page is design-complete.
+
+Recommended materials this unlocks, once approved:
+
+Worth quoting separately if you have the capacity - a Tesla Powerwall section on the homepage, a downloadable one-page PDF our sales team can leave with homeowners, and badge placement on our Tesla-specific quote and invoice templates. All three are permitted uses. Anything paid-media or direct-mail is not, so those stay off the list.
+
+
+
+WHAT WE WILL SUPPLY
+
+To keep the quote tight, I have already prepared a good deal of this so your team is implementing rather than researching:
+
+• All twelve rewritten page titles and meta descriptions, and the H1 for each page
+• The complete LocalBusiness, Service and FAQPage schema, ready to paste
+• The alt text, the corrected link list, and the corrected robots.txt
+• The logo and icon pack
+• Project photography for the three new pages
+
+WHAT I NEED BACK FROM YOU
+
+• A quote broken out by item, with hours or a fixed price for each, so we can approve them independently
+• Your proposed timeline. For reference, what we are aiming for: Items 1 and 2 within a week, Items 4 and 5 within two to three weeks, and Items 3 and 6 within four weeks. Item 6 mostly sits on our side, but the Tesla review window needs to be inside your build schedule for the Tesla page.
+
+City and service-area landing pages are a separate scope. I will send that brief once the base is clean.
+
+If you can get me the quote by early next week, we can start on Items 1 and 2 the same week.

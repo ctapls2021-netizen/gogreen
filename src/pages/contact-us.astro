@@ -1,0 +1,100 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TrustBar from '../components/TrustBar.astro';
+import LeadForm from '../components/LeadForm.astro';
+---
+
+<Layout 
+  title="Contact GoGreen Builders | Sherman Oaks & Southern California"
+  description="Get in touch with GoGreen Builders. Call (818) 443-6678, visit our Sherman Oaks office, or request a free estimate online. CSLB Lic #1064369."
+>
+  <section class="bg-[#181818] text-white py-16 sm:py-24 text-center">
+    <div class="max-w-3xl mx-auto px-4 space-y-4">
+      <span class="text-xs font-bold uppercase tracking-widest text-[#92d94d]">We're Here To Help</span>
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight">
+        Contact GoGreen Builders
+      </h1>
+      <p class="text-gray-300 text-base sm:text-lg">
+        Have questions about solar, roofing, rebates, or your next remodel? Reach out to our local Sherman Oaks team.
+      </p>
+    </div>
+  </section>
+
+  <TrustBar />
+
+  <section class="py-16 sm:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <!-- Contact Information -->
+        <div class="lg:col-span-6 space-y-8">
+          <div>
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Direct Contact & Office Hours</h2>
+            <p class="text-gray-600 leading-relaxed">
+              We provide prompt, honest answers to all your home efficiency inquiries. Feel free to call, text, or drop by our office.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            <div class="flex items-start gap-4 p-5 rounded-2xl bg-gray-50 border border-gray-100">
+              <div class="w-12 h-12 rounded-xl bg-[#92d94d]/15 flex items-center justify-center text-[#7ec438] flex-shrink-0">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 4V3z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-bold text-gray-900 text-base">Phone & Text</h3>
+                <p class="text-sm text-gray-600 mt-1">
+                  Call: <a href="tel:+18184436678" class="text-gray-900 font-bold hover:text-[#7ec438]">(818) 443-6678</a>
+                </p>
+                <p class="text-sm text-gray-600">
+                  Text: <a href="sms:+18184436678" class="text-gray-900 font-semibold hover:text-[#7ec438]">(818) 443-6678</a>
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4 p-5 rounded-2xl bg-gray-50 border border-gray-100">
+              <div class="w-12 h-12 rounded-xl bg-[#92d94d]/15 flex items-center justify-center text-[#7ec438] flex-shrink-0">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-bold text-gray-900 text-base">Headquarters</h3>
+                <p class="text-sm text-gray-600 mt-1">
+                  15335 Morrison St. Suite 130<br>Sherman Oaks, CA 91403
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4 p-5 rounded-2xl bg-gray-50 border border-gray-100">
+              <div class="w-12 h-12 rounded-xl bg-[#92d94d]/15 flex items-center justify-center text-[#7ec438] flex-shrink-0">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-bold text-gray-900 text-base">Business Operating Hours</h3>
+                <p class="text-sm text-gray-600 mt-1">
+                  Monday – Saturday: 8:00 AM – 7:00 PM<br>
+                  Sunday: Closed
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form (Form ID 9 as requested for contact page tracking) -->
+        <div class="lg:col-span-6">
+          <LeadForm 
+            formId={9} 
+            title="Send Us A Direct Message" 
+            subtitle="Fill out the form below and we'll reply within 1 business day."
+            buttonText="Submit Message"
+          />
+        </div>
+
+      </div>
+    </div>
+  </section>
+</Layout>
