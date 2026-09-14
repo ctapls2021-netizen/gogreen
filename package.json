@@ -12,5 +12,8 @@
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.3.2",
     "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "purgecss": "^8.0.0"
   }
 }
