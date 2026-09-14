@@ -1,6 +1,31 @@
 // GoGreen Builders - Lightweight Native Interactivity
 document.addEventListener('DOMContentLoaded', function() {
-  // 1. Mobile Navigation Hamburger Menu Toggle
+  // 1. Safeguard: Ensure all containers and galleries render immediately
+  try {
+    var parents = document.querySelectorAll('.e-con.e-parent');
+    for (var i = 0; i < parents.length; i++) {
+      if (!parents[i].classList.contains('e-lazyloaded')) {
+        parents[i].classList.add('e-lazyloaded');
+      }
+    }
+
+    var galleryImages = document.querySelectorAll('.e-gallery-image[data-thumbnail]');
+    for (var g = 0; g < galleryImages.length; g++) {
+      var el = galleryImages[g];
+      var thumb = el.getAttribute('data-thumbnail');
+      if (thumb && (!el.style.backgroundImage || el.style.backgroundImage === 'none')) {
+        var cleanUrl = thumb.replace(/^https?:\/\/[^\/]+/, '');
+        if (!cleanUrl.startsWith('/')) cleanUrl = '/' + cleanUrl;
+        el.style.backgroundImage = 'url("' + cleanUrl + '")';
+        el.style.backgroundSize = 'cover';
+        el.style.backgroundPosition = 'center';
+      }
+    }
+  } catch (e) {
+    console.error('Visual initialization error:', e);
+  }
+
+  // 2. Mobile Navigation Hamburger Menu Toggle
   var mobileToggles = document.querySelectorAll('.gg-hamburger-menu, .jkit-hamburger-menu, [aria-label="open-menu"]');
   var closeToggles = document.querySelectorAll('.gg-close-menu, .jkit-close-menu, [aria-label="close-menu"]');
   var navWrappers = document.querySelectorAll('.gg-menu-wrapper, .jkit-menu-wrapper');
@@ -45,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // 2. Submenu Dropdown Toggle on Mobile
+  // 3. Submenu Dropdown Toggle on Mobile
   var dropdownToggles = document.querySelectorAll('.dropdown-menu-toggle, li.menu-item-has-children > a');
   dropdownToggles.forEach(function(toggle) {
     toggle.addEventListener('click', function(e) {
@@ -64,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // 3. Smooth scrolling for internal anchor links
+  // 4. Smooth scrolling for internal anchor links
   document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
     anchor.addEventListener('click', function(e) {
       var href = this.getAttribute('href');
