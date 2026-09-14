@@ -1,95 +1,52 @@
-// GoGreen Builders - Lightweight Native Interactivity
+// GoGreen Builders - High Performance Native Interactivity
 document.addEventListener('DOMContentLoaded', function() {
-  // 1. Safeguard: Ensure all containers and galleries render immediately
-  try {
-    var parents = document.querySelectorAll('.e-con.e-parent');
-    for (var i = 0; i < parents.length; i++) {
-      if (!parents[i].classList.contains('e-lazyloaded')) {
-        parents[i].classList.add('e-lazyloaded');
-      }
-    }
-
-    var galleryImages = document.querySelectorAll('.e-gallery-image[data-thumbnail]');
-    for (var g = 0; g < galleryImages.length; g++) {
-      var el = galleryImages[g];
-      var thumb = el.getAttribute('data-thumbnail');
-      if (thumb && (!el.style.backgroundImage || el.style.backgroundImage === 'none')) {
-        var cleanUrl = thumb.replace(/^https?:\/\/[^\/]+/, '');
-        if (!cleanUrl.startsWith('/')) cleanUrl = '/' + cleanUrl;
-        el.style.backgroundImage = 'url("' + cleanUrl + '")';
-        el.style.backgroundSize = 'cover';
-        el.style.backgroundPosition = 'center';
-      }
-    }
-  } catch (e) {
-    console.error('Visual initialization error:', e);
-  }
-
-  // 2. Mobile Navigation Hamburger Menu Toggle
-  var mobileToggles = document.querySelectorAll('.gg-hamburger-menu, .jkit-hamburger-menu, [aria-label="open-menu"]');
-  var closeToggles = document.querySelectorAll('.gg-close-menu, .jkit-close-menu, [aria-label="close-menu"]');
   var navWrappers = document.querySelectorAll('.gg-menu-wrapper, .jkit-menu-wrapper');
   var overlays = document.querySelectorAll('.gg-overlay, .jkit-overlay');
 
-  mobileToggles.forEach(function(btn) {
+  // Mobile Hamburger Toggle
+  document.querySelectorAll('.gg-hamburger-menu, .jkit-hamburger-menu, [aria-label="open-menu"]').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
-      navWrappers.forEach(function(nav) {
-        var isActive = nav.classList.toggle('active');
-        nav.style.display = isActive ? 'block' : '';
-      });
-      overlays.forEach(function(ov) {
-        var isActive = ov.classList.toggle('active');
-        ov.style.display = isActive ? 'block' : '';
-      });
+      var active = false;
+      navWrappers.forEach(function(nav) { active = nav.classList.toggle('active'); nav.style.display = active ? 'block' : ''; });
+      overlays.forEach(function(ov) { ov.classList.toggle('active'); ov.style.display = active ? 'block' : ''; });
     });
   });
 
-  closeToggles.forEach(function(btn) {
+  // Close Menu
+  document.querySelectorAll('.gg-close-menu, .jkit-close-menu, [aria-label="close-menu"]').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
-      navWrappers.forEach(function(nav) {
-        nav.classList.remove('active');
-        nav.style.display = '';
-      });
-      overlays.forEach(function(ov) {
-        ov.classList.remove('active');
-        ov.style.display = '';
-      });
+      navWrappers.forEach(function(nav) { nav.classList.remove('active'); nav.style.display = ''; });
+      overlays.forEach(function(ov) { ov.classList.remove('active'); ov.style.display = ''; });
     });
   });
 
+  // Overlay Click
   overlays.forEach(function(ov) {
     ov.addEventListener('click', function() {
-      navWrappers.forEach(function(nav) {
-        nav.classList.remove('active');
-        nav.style.display = '';
-      });
+      navWrappers.forEach(function(nav) { nav.classList.remove('active'); nav.style.display = ''; });
       ov.classList.remove('active');
       ov.style.display = '';
     });
   });
 
-  // 3. Submenu Dropdown Toggle on Mobile
-  var dropdownToggles = document.querySelectorAll('.dropdown-menu-toggle, li.menu-item-has-children > a');
-  dropdownToggles.forEach(function(toggle) {
+  // Dropdown Toggle
+  document.querySelectorAll('.dropdown-menu-toggle, li.menu-item-has-children > a').forEach(function(toggle) {
     toggle.addEventListener('click', function(e) {
       var parentLi = this.closest('li.menu-item-has-children');
       if (parentLi) {
         var sub = parentLi.querySelector('.sub-menu');
-        if (sub) {
-          var isMobileNav = this.closest('.gg-menu-wrapper, .jkit-menu-wrapper');
-          if (isMobileNav || this.classList.contains('dropdown-menu-toggle')) {
-            e.preventDefault();
-            sub.classList.toggle('dropdown-open');
-            sub.style.display = (sub.style.display === 'block') ? 'none' : 'block';
-          }
+        if (sub && (this.closest('.gg-menu-wrapper, .jkit-menu-wrapper') || this.classList.contains('dropdown-menu-toggle'))) {
+          e.preventDefault();
+          sub.classList.toggle('dropdown-open');
+          sub.style.display = (sub.style.display === 'block') ? 'none' : 'block';
         }
       }
     });
   });
 
-  // 4. Smooth scrolling for internal anchor links
+  // Smooth Scroll
   document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
     anchor.addEventListener('click', function(e) {
       var href = this.getAttribute('href');
@@ -98,14 +55,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (target) {
           e.preventDefault();
           target.scrollIntoView({ behavior: 'smooth' });
-          navWrappers.forEach(function(nav) {
-            nav.classList.remove('active');
-            nav.style.display = '';
-          });
-          overlays.forEach(function(ov) {
-            ov.classList.remove('active');
-            ov.style.display = '';
-          });
+          navWrappers.forEach(function(nav) { nav.classList.remove('active'); nav.style.display = ''; });
+          overlays.forEach(function(ov) { ov.classList.remove('active'); ov.style.display = ''; });
         }
       }
     });
