@@ -10,10 +10,12 @@ document.addEventListener('DOMContentLoaded', function() {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
       navWrappers.forEach(function(nav) {
-        nav.classList.add('active');
+        var isActive = nav.classList.toggle('active');
+        nav.style.display = isActive ? 'block' : '';
       });
       overlays.forEach(function(ov) {
-        ov.classList.add('active');
+        var isActive = ov.classList.toggle('active');
+        ov.style.display = isActive ? 'block' : '';
       });
     });
   });
@@ -23,9 +25,11 @@ document.addEventListener('DOMContentLoaded', function() {
       e.preventDefault();
       navWrappers.forEach(function(nav) {
         nav.classList.remove('active');
+        nav.style.display = '';
       });
       overlays.forEach(function(ov) {
         ov.classList.remove('active');
+        ov.style.display = '';
       });
     });
   });
@@ -34,8 +38,10 @@ document.addEventListener('DOMContentLoaded', function() {
     ov.addEventListener('click', function() {
       navWrappers.forEach(function(nav) {
         nav.classList.remove('active');
+        nav.style.display = '';
       });
       ov.classList.remove('active');
+      ov.style.display = '';
     });
   });
 
@@ -51,11 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
           if (isMobileNav || this.classList.contains('dropdown-menu-toggle')) {
             e.preventDefault();
             sub.classList.toggle('dropdown-open');
-            if (sub.style.display === 'block') {
-              sub.style.display = '';
-            } else {
-              sub.style.display = 'block';
-            }
+            sub.style.display = (sub.style.display === 'block') ? 'none' : 'block';
           }
         }
       }
@@ -73,6 +75,11 @@ document.addEventListener('DOMContentLoaded', function() {
           target.scrollIntoView({ behavior: 'smooth' });
           navWrappers.forEach(function(nav) {
             nav.classList.remove('active');
+            nav.style.display = '';
+          });
+          overlays.forEach(function(ov) {
+            ov.classList.remove('active');
+            ov.style.display = '';
           });
         }
       }
