@@ -15,17 +15,17 @@ const { title = "GoGreen Builders - Sustainable Home Energy Solutions" } = Astro
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="profile" href="https://gmpg.org/xfn/11" />
+  
   <title>{title}</title>
   <style>
-    #wpadminbar { display: none !important; }
+    
     html { margin-top: 0px !important; }
-    body.admin-bar { margin-top: 0px !important; }
+    
   </style>
   <slot name="head" />
   <Fragment set:html={globalHead} />
 </head>
-<body itemtype="https://schema.org/WebPage" itemscope="itemscope" class="home wp-singular page-template page-template-elementor_header_footer wp-embed-responsive ast-single-post ast-inherit-site-logo-transparent ast-theme-transparent-header ast-hfb-header elementor-default elementor-template-full-width elementor-kit-5 elementor-page">
+<body itemtype="https://schema.org/WebPage" itemscope="itemscope" class="site-wrapper">
   <Header />
   <slot />
   <Footer />
